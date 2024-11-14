@@ -16,18 +16,6 @@ function startTimer() {
     timerInterval = setInterval(updateTimer, 1000);
 }
 
-// function updateTimer() {
-//     const minutes = Math.floor(remainingTime / 60);
-//     const seconds = remainingTime % 60;
-//     document.getElementById("timer").textContent = `${minutes}:${seconds.toString().padStart(2, "0")}`;
-//     remainingTime--;
-//     if (remainingTime  < 0) {
-//         // clearInterval(timerInterval);
-//         // lancer un son !
-//     }
-//     move();
-// }
-
 
 function updateTimer() {
     remainingTime = time - Math.floor((new Date().getTime() - launch_time) / 1000);
