@@ -52,8 +52,10 @@
         <button class="btn btn-danger" id="resetButton">Reset Timer</button>
     </div>
 
+    {% csrf_token %}
+    <script type="text/javascript" src="{% static 'timer/js/index.js' %}" data-launch_time="{{ launch_time }}" >
 
-    <script type="text/javascript" src="{% static 'timer/js/index.js' %}"></script>
+    </script>
     <!-- Bootstrap JS and jQuery (required for carousel and other Bootstrap components) -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
