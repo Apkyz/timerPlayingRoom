@@ -1,5 +1,5 @@
 let timerInterval;
-let time = 45*60;
+let time = 45 * 60;
 let launch_time;
 let remainingTime = time; // 45 minutes in seconds
 let finished = false;
@@ -20,9 +20,9 @@ function startTimer() {
 function updateTimer() {
     remainingTime = time - Math.floor((new Date().getTime() - launch_time) / 1000);
     minutes = (remainingTime > 0) ? Math.floor(remainingTime / 60) : Math.ceil(remainingTime / 60);
-    minutes = (minutes == 0 && remainingTime < 0 ) ? '-'+minutes : minutes;
+    minutes = (minutes == 0 && remainingTime < 0) ? '-' + minutes : minutes;
     seconds = Math.abs(remainingTime % 60);
-    seconds = (seconds < 10 && seconds >= 0) ? '0'+seconds : seconds;
+    seconds = (seconds < 10 && seconds >= 0) ? '0' + seconds : seconds;
 
     document.getElementById("timer").textContent = `${minutes}:${seconds}`;
     updateProgressBar();
@@ -30,7 +30,7 @@ function updateTimer() {
     if (remainingTime <= 0 && !finished) {
         finished = true;
         timerElement.textContent = 'TIME !';
-        
+
     }
 }
 
@@ -39,15 +39,15 @@ function updateProgressBar() {
     progressBar.style.width = `${percentage}%`;
 
     if (percentage < 50 && percentage > 25) {
-      progressBar.className = "progress-bar bg-warning";
+        progressBar.className = "progress-bar bg-warning";
     }
     else if (percentage < 25 && percentage > 0) {
-      progressBar.className = "progress-bar bg-danger";
+        progressBar.className = "progress-bar bg-danger";
     }
-  }
+}
 
-function resetPage(){
+function resetPage() {
     location.reload();
-  }
+}
 startButton.addEventListener('click', startTimer);
 resetButton.addEventListener('click', resetPage);
