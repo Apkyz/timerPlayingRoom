@@ -19,6 +19,13 @@ def index(request):
     
     return render(request, 'index.html', {"launch_time": time})
 
+def admin(request):
+
+    if not  request.user.is_authenticated:
+
+        return render(request, 'login.html')
+
+    return render(request, 'admin.html')
 
 class TimerViewSet(viewsets.ModelViewSet):
     queryset = Timer.objects.all()
