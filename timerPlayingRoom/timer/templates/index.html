@@ -44,14 +44,6 @@
         </div>
     </div>
 
-    <!-- Timer Controller -->
-    <div id="timer-controler-left">
-        <button class="btn btn-primary" id="startButton">Start Timer</button>
-    </div>
-    <div id="timer-controler-right">
-        <button class="btn btn-danger" id="resetButton">Reset Timer</button>
-    </div>
-
     {% csrf_token %}
     <script type="text/javascript" src="{% static 'timer/js/index.js' %}" data-launch_time="{{ launch_time }}" >
 

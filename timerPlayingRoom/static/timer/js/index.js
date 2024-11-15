@@ -7,30 +7,15 @@ const data = document.currentScript.dataset;
 let launch_time = data.launch_time;
 
 const timerElement = document.getElementById('timer');
-const startButton = document.getElementById('startButton');
-const resetButton = document.getElementById('resetButton');
 const progressBar = document.querySelector('.progress-bar');
 
 const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 
 function startTimer() {
 
-    fetch('/api/timer/start_timer/', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRFToken': csrftoken
-        },
-    }).then(response => response.json())
-        .then(data => {
-            launch_time = data.launch_time;
-            finished = false;
-            clearInterval(timerInterval);
-            timerInterval = setInterval(updateTimer, 1000);
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+    clearInterval(timerInterval);
+    timerInterval = setInterval(updateTimer, 1000);
+
 }
 
 
@@ -70,23 +55,47 @@ function formatTime(t) {
 }
 
 function resetPage() {
-    fetch('/api/timer/reset_timer/', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRFToken': csrftoken
-        },
-    }).then( () => {
-        window.location.reload();
 
-    }).catch(error => {
-        console.error('Error:', error);
-    });
+    window.location.reload();
+
 
 }
-startButton.addEventListener('click', startTimer);
-resetButton.addEventListener('click', resetPage);
+
+var ws_url = 'ws://' + window.location.host + '/ws/ticks/';
+function connect() {
+    var ws = new WebSocket(ws_url);
+
+    ws.onmessage = function (event) {
+        var data_ws = JSON.parse(event.data);
+
+        if (data_ws['type'] === 'reset') {
+            resetPage();
+        }
+
+        else if (data_ws['type'] === 'start') {
+            launch_time =  parseFloat(data_ws['time'], 10);
+            finished = false;
+
+            startTimer();
+        }
+
+    }
+
+    ws.onclose = function (event) {
+        console.log('Connection closed');
+        connect();
+
+    }
+
+    ws.onerror = function (event) {
+        console.log('Error');
+        ws.close();
+    }
+}
+
 
 if (launch_time !== "None") {
     timerInterval = setInterval(updateTimer, 1000);
 }
+
+connect();

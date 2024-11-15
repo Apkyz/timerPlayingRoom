@@ -49,15 +49,17 @@ class TimerViewSet(viewsets.ModelViewSet):
         timer.launch_time = timezone.now()
         timer.save()
 
+        timer.send_ticket("start")
+
         return Response({'launch_time': timer.display_time()})
     
     @action(detail=False, methods=['post'])
-    def reset_timer(self, request):
-        
-
+    def reset_timer(self, request):    
 
         timer = Timer.objects.first()
         if timer:
+            timer.send_ticket("reset")
             timer.delete()
+
 
         return Response("Timer reset")
