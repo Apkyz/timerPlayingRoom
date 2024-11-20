@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from rest_framework import viewsets
 from rest_framework.decorators import action
 
-from .models import Timer
+from .models import Timer, Message
 
 from .serializers import TimerSerializer
 
@@ -63,3 +63,18 @@ class TimerViewSet(viewsets.ModelViewSet):
 
 
         return Response("Timer reset")
+    
+class MessageViewSet(viewsets.ModelViewSet):
+    queryset = Timer.objects.all()
+    serializer_class = TimerSerializer
+    permission_classes = [IsAuthenticated]
+
+    @action(detail=False, methods=['post'])
+    def send_message(self, request):
+        content = request.data.get('content')
+        user = request.user.username
+
+        message = Message.objects.create(content=content, user=user)
+        message.send_ticket() 
+
+        return Response({'content': content, 'user': user})

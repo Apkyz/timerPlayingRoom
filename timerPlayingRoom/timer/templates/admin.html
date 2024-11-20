@@ -15,7 +15,7 @@
 
 </head>
 
-<body >
+<body>
     <p>ADMIN</p>
     <div id="timer-controler-left">
         <button class="btn btn-primary" id="startButton">Start Timer</button>
@@ -23,9 +23,13 @@
     <div id="timer-controler-right">
         <button class="btn btn-danger" id="resetButton">Reset Timer</button>
     </div>
+    <div>
+        <input type="text" name="message" id="message" placeholder="Enter message">
+        <button type="submit" class="btn btn-primary" id="sendMessage">Send Message</button>
 
+    </div>
     {% csrf_token %}
-    <script type="text/javascript" src="{% static 'timer/js/admin.js' %}" data-launch_time="{{ launch_time }}" ></script>
+    <script type="text/javascript" src="{% static 'timer/js/admin.js' %}" data-launch_time="{{ launch_time }}"></script>
 </body>
 
 </html>

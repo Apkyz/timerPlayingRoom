@@ -61,6 +61,12 @@ function resetPage() {
 
 }
 
+function displayMessage(message) {
+    // const messageElement = document.getElementById('message');
+    console.log(message);
+    // messageElement.textContent = message;
+}
+
 var ws_url = 'ws://' + window.location.host + '/ws/ticks/';
 function connect() {
     var ws = new WebSocket(ws_url);
@@ -79,6 +85,9 @@ function connect() {
             startTimer();
         }
 
+        else if (data_ws['type'] === 'message') {
+            displayMessage(data_ws['message']);
+        }            
     }
 
     ws.onclose = function (event) {

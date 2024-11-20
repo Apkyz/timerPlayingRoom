@@ -42,3 +42,28 @@ class Timer(models.Model):
                 ),
             },
         )
+
+class Message(models.Model):
+    content = models.TextField()
+    date = models.DateTimeField(auto_now_add=True)
+    user = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f"Message at {self.date}"
+
+    def send_ticket(self):
+
+        channel_layer = channels.layers.get_channel_layer()
+        async_to_sync(channel_layer.group_send)(
+            settings.TICKS_GROUP_NAME,
+            {
+                "type": "new_ticks",
+                "content": json.dumps(
+                    {
+                        "type": "message",
+                        "message": self.content,
+                    }
+                ),
+            },
+        )
+
