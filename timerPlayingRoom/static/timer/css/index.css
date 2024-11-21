@@ -5,6 +5,7 @@ body {
     min-height: 100vh;
     margin: 0;
     align-items: center;
+    background-color:  #fdfefe ;
   }
   #timer{
     font-size: 800%;
