@@ -62,9 +62,16 @@ function resetPage() {
 }
 
 function displayMessage(message) {
-    // const messageElement = document.getElementById('message');
-    console.log(message);
-    // messageElement.textContent = message;
+    var marquee = document.getElementById('marquee');
+    var spans = marquee.getElementsByTagName('span');
+    for (var i = 0; i < spans.length; i++) {
+        spans[i].textContent = message+' ';
+    }
+}
+
+function fillMarquee() {
+    var marquee = document.getElementById('marquee');
+    marquee.innerHTML = '<span></span>'.repeat(100);
 }
 
 var ws_url = 'ws://' + window.location.host + '/ws/ticks/';
@@ -79,7 +86,7 @@ function connect() {
         }
 
         else if (data_ws['type'] === 'start') {
-            launch_time =  parseFloat(data_ws['time'], 10);
+            launch_time = parseFloat(data_ws['time'], 10);
             finished = false;
 
             startTimer();
@@ -87,7 +94,7 @@ function connect() {
 
         else if (data_ws['type'] === 'message') {
             displayMessage(data_ws['message']);
-        }            
+        }
     }
 
     ws.onclose = function (event) {
@@ -108,3 +115,5 @@ if (launch_time !== "None") {
 }
 
 connect();
+
+fillMarquee();
