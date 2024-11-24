@@ -64,8 +64,9 @@ function resetPage() {
 function displayMessage(message) {
     var marquee = document.getElementById('marquee');
     var spans = marquee.getElementsByTagName('span');
+    var msg = message ? message + '&nbsp;' : '';
     for (var i = 0; i < spans.length; i++) {
-        spans[i].textContent = message+' ';
+        spans[i].innerHTML = msg;
     }
 }
 
