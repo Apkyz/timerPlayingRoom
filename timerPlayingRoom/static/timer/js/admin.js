@@ -1,6 +1,7 @@
 const resetButton = document.getElementById('resetButton');
 const startButton = document.getElementById('startButton');
 const sendMessageBtn = document.getElementById('sendMessage');
+const resetMessageBtn = document.getElementById('resetMessage');
 
 const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 
@@ -57,6 +58,14 @@ function sendMessage() {
             console.error('Error:', error);
         });
 }
+
+
+function resetMessage() {
+    msg = document.getElementById('message');
+    msg.value = '';
+    sendMessage();
+}
 startButton.addEventListener('click', startTimer);
 resetButton.addEventListener('click', resetPage);
 sendMessageBtn.addEventListener('click', sendMessage);
+resetMessageBtn.addEventListener('click', resetMessage);
