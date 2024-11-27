@@ -40,15 +40,15 @@ body {
   overflow: hidden;
   white-space: nowrap;
   background-color: #f1f1f1; /* Background color for the marquee */
-  padding: 10px; /* Padding around the text */
-  border: 1px solid #ccc; /* Border around the marquee */
+  padding: 8px; /* Padding around the text */
+  border: 4px solid #b30909; /* Border around the marquee */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow for better visibility */
 }
 
 .marquee span {
   display: inline-block;
   animation: marquee 10s linear infinite;
-  font-size: 15dvh;
+  font-size: 14dvh;
 }
 
 @keyframes marquee {
