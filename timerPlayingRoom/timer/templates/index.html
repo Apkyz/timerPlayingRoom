@@ -18,11 +18,6 @@
 <body class="">
 
     <div class="container">
-        <div class="container">
-            <div id="marquee" class="marquee">
-
-            </div>
-        </div>
         <!-- Bootstrap Carousel -->
         <div id="carouselExample" class="carousel slide" data-ride="carousel" data-interval="10000">
             <div class="carousel-inner">
@@ -35,11 +30,16 @@
             </div>
         </div>
     </div>
+    <div class="">
+        <div id="marquee" class="marquee">
 
+        </div>
+    </div>
     <div class="container">
         <!-- Timer Section -->
         <div id="timer-container">
             <h2><span id="timer">45:00</span></h2>
+            {{ finished }}
         </div>
 
         <!-- Progress Bar -->

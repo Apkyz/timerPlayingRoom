@@ -68,11 +68,14 @@ function displayMessage(message) {
     for (var i = 0; i < spans.length; i++) {
         spans[i].innerHTML = msg;
     }
+
+    marquee.style.display = message === '' ? 'none' : 'flex';
+
 }
 
 function fillMarquee() {
     var marquee = document.getElementById('marquee');
-    marquee.innerHTML = '<span></span>'.repeat(100);
+    marquee.innerHTML = '<span></span>'.repeat(10);
 }
 
 var ws_url = 'ws://' + window.location.host + '/ws/ticks/';
