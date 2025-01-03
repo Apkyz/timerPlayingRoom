@@ -1,5 +1,8 @@
+from django.http import HttpResponseRedirect
+from django.utils.http import url_has_allowed_host_and_scheme 
 from django.shortcuts import render
 from django.utils import timezone
+from django.contrib.auth import authenticate,login
 
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -23,9 +26,28 @@ def admin(request):
 
     if not  request.user.is_authenticated:
 
-        return render(request, 'login.html')
+        return HttpResponseRedirect('/admin/login/?next=admin/')
 
     return render(request, 'admin.html')
+
+def login_admin(request):
+
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+
+            next = request.GET.get('next')
+            next_url = next if url_has_allowed_host_and_scheme(next, allowed_hosts=request.get_host()) else '/'
+            return HttpResponseRedirect("/"+next_url)
+        else:
+            return render(request, 'loginAdmin.html', {'error': 'Invalid credentials', 'username': username})
+        
+    return render(request, 'loginAdmin.html')
 
 class TimerViewSet(viewsets.ModelViewSet):
     queryset = Timer.objects.all()
