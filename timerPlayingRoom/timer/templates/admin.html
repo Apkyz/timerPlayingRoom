@@ -7,28 +7,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" type="image/x-icon" href="{% static 'timer/images/pr.ico' %}">
     <title>Admin</title>
-    <!-- Bootstrap CSS -->
-    <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> -->
-
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'timer/css/admin.css' %}">
-
 </head>
 
 <body>
-    <p>ADMIN</p>
-    <div id="timer-controler-left">
-        <button class="btn btn-primary" id="startButton">Start Timer</button>
-    </div>
-    <div id="timer-controler-right">
-        <button class="btn btn-danger" id="resetButton">Reset Timer</button>
-    </div>
-    <div>
-        <input type="text" name="message" id="message" placeholder="Enter message">
-        <button  class="btn btn-primary" id="sendMessage">Send Message</button>
-        <button  class="btn btn-primary" id="resetMessage">Reset Message</button>
+    <header>
+        <h1>Admin Panel</h1>
+    </header>
+    <main>
+        <!-- Timer Controls Section -->
+        <section id="timer-controls">
+            <h2>Timer Controls</h2>
+            <div>
+                <button class="btn btn-primary" id="startButton">Start Timer</button>
 
-    </div>
+                <button class="btn btn-danger" id="resetButton">Reset Timer</button>
+            </div>
+        </section>
+
+        <!-- Message Controls Section -->
+        <section id="message-controls">
+            <h2>Message Controls</h2>
+            <textarea name="message" id="message" placeholder="Enter the message"></textarea>
+            <div>
+                <button class="btn btn-primary" id="sendMessage">Send Message</button>
+                <button class="btn btn-danger" id="resetMessage">Reset Message</button>
+            </div>
+        </section>
+    </main>
     {% csrf_token %}
     <script type="text/javascript" src="{% static 'timer/js/admin.js' %}" data-launch_time="{{ launch_time }}"></script>
 </body>
