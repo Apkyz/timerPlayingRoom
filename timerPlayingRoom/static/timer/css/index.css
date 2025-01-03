@@ -48,7 +48,7 @@ body {
 .marquee span {
   display: inline-block;
   animation: marquee 10s linear infinite;
-  font-size: 14dvh;
+  font-size: 10dvh;
   letter-spacing: -0.5dvw;
   font-family: 'Roboto Condensed', sans-serif; /* Use the Roboto Condensed font */
 }
