@@ -78,7 +78,7 @@ function fillMarquee() {
     marquee.innerHTML = '<span></span>'.repeat(10);
 }
 
-var ws_url = 'ws://' + window.location.host + '/ws/ticks/';
+var ws_url = 'wss://' + window.location.host + '/ws/ticks/';
 function connect() {
     var ws = new WebSocket(ws_url);
 
