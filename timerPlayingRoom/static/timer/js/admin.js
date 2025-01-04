@@ -7,36 +7,53 @@ const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 
 
 function resetPage() {
-    fetch('/api/timer/reset_timer/', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRFToken': csrftoken
-        },
-    }).then(() => {
+    Swal.fire({
+        title: 'Êtes-vous sûr de vouloir réinitialiser le timer?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Oui, réinitialiser',
+        cancelButtonText: 'Non, annuler'
+    }).then((result) => {
+        if (result.value) {
+            fetch('/api/timer/reset_timer/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrftoken
+                },
+            }).then(() => {
 
-    }).catch(error => {
-        console.error('Error:', error);
+            }).catch(error => {
+                console.error('Error:', error);
+            });
+        }
     });
-
 }
 
-
 function startTimer() {
+    Swal.fire({
+        title: 'Êtes-vous sûr de vouloir démarrer le timer?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Oui, démarrer',
+        cancelButtonText: 'Non, annuler'
+    }).then((result) => {
+        if (result.value) {
+            fetch('/api/timer/start_timer/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrftoken
+                },
+            }).then(response => response.json())
+                .then(data => {
 
-    fetch('/api/timer/start_timer/', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRFToken': csrftoken
-        },
-    }).then(response => response.json())
-        .then(data => {
-
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+    });
 }
 
 
