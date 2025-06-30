@@ -27,7 +27,7 @@ service-identity==24.2.0
 sqlparse==0.5.3
 tomli==2.2.1
 Twisted==25.5.0
-txaio==23.1.1
+txaio==23.6.1
 typing_extensions==4.14.0
 whitenoise==6.9.0
 zope.interface==7.2
