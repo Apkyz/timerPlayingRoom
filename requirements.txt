@@ -1,6 +1,6 @@
 asgiref==3.11.1
 async-timeout==5.0.1
-attrs==25.4.0
+attrs==26.1.0
 autobahn==25.12.2
 Automat==25.4.16
 cffi==2.0.0
@@ -11,7 +11,7 @@ cryptography==46.0.5
 daphne==4.2.1
 dj-database-url==3.1.2
 Django==6.0.3
-djangorestframework==3.16.1
+djangorestframework==3.17.0
 hyperlink==21.0.0
 idna==3.11
 incremental==24.11.0
