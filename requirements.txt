@@ -10,8 +10,8 @@ constantly==23.10.4
 cryptography==50.0.2
 daphne==4.2.3
 dj-database-url==3.1.2
-Django==6.1.1
-djangorestframework==3.18.1
+Django==6.1.2
+djangorestframework==3.18.3
 hyperlink==21.0.0
 idna==3.20
 incremental==24.11.0
@@ -19,13 +19,13 @@ msgpack==1.2.3
 psycopg2==2.9.13
 pyasn1==0.6.4
 pyasn1_modules==0.4.2
-pycparser==3.0
+pycparser==3.11
 pyOpenSSL==26.4.0
 python-decouple==3.8
 redis==8.1.0
 service-identity==26.1.0
 sqlparse==0.6.0
-tomli==2.4.1
+tomli==2.5.0
 Twisted==26.4.0
 txaio==26.6.1
 typing_extensions==4.16.0
